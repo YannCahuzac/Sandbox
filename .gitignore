@@ -1,0 +1,11 @@
+*.iml
+.idea
+.classpath
+.settings
+.project
+*.log
+*.class
+target
+node_modules
+components
+bower_components
