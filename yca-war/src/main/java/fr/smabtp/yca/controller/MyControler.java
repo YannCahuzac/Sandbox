@@ -55,6 +55,18 @@ public class MyControler {
 	}
 
 	/**
+	 * Controller de test 2
+	 */
+	@RequestMapping(value = "403", method = RequestMethod.POST)
+	public ModelAndView accessDenied(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("403");
+		mav.addObject("message", "Vous n'avez pas accès à cette page.");
+		return mav;
+	}
+
+	/**
 	 * Controller de test 3
 	 */
 	@ResponseBody

@@ -7,18 +7,26 @@
 
 	<display-name>Ref Web App YCA</display-name>
 
+	<!-- Spring MVC -->
 	<welcome-file-list>
 		<welcome-file>jsp/index.jsp</welcome-file>
 	</welcome-file-list>
 
+	<!-- Loads Spring config files -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/dispatcher-servlet.xml
 			/WEB-INF/applicationContext.xml
 			/WEB-INF/springContext.xml
+			/WEB-INF/spring-security.xml
 		</param-value>
 	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- Fin Spring MVC -->
 
 	<!-- Partie REST -->
 	<servlet>
@@ -30,7 +38,6 @@
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/action/*</url-pattern>
-		<url-pattern>/jsp/action/*</url-pattern>
 	</servlet-mapping>
 	<!-- Fin Partie REST -->
 
@@ -46,8 +53,16 @@
 	</servlet-mapping>
 	<!-- Fin Partie SOAP -->
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	<!-- Spring Security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- Fin Spring Security -->
 
 </web-app>
