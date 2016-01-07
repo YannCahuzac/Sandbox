@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../../bower_components/bootstrap/css/bootstrap.css">
+		<script src="../../bower_components/angular/angular.js"></script>
+		<script src="appRouterOff.js"></script>
+		<script src="../Service1/Ctrl.js"></script>
+		<script src="../Service1/Srv1.js"></script>
+	</head>
+	<!-- 	Ici on met tout le code du controller dans le ng-controller -->
+	<body ng-app="ycaAngular">
+		<div ng-controller="Ctrl">
+			<br>Nom <input type="text" ng-model="nom"> Prénom <input type="text" ng-model="prenom">
+			<button ng-click="createUser(nom,prenom)">Créer</button>
+			<br><p>{{error}}</p>
+			<p>{{nom}}</p>
+			<div ng-repeat="u in users">{{u.lib1}} : Id = {{u.lib2}}</div>
+		</div>
+	</body>
+</html>

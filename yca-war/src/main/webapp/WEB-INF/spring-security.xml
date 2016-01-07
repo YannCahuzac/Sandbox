@@ -1,5 +1,4 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
@@ -9,13 +8,12 @@
 		<!-- Erreur 403 -->
 		<access-denied-handler error-page="/action/403" />
 		<!-- Role par action -->
-		<intercept-url pattern="/action/testController1"
-			access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTION1')" />
-		<intercept-url pattern="/action/testController2"
-			access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTION2')" />
+		<intercept-url pattern="/action/testController1" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTION1')" />
+		<intercept-url pattern="/action/testController2" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ACTION2')" />
 		<intercept-url pattern="/action/403" access="permitAll" />
 	</http>
 
+	<!-- MODE SANS DATABASE -->
 	<!-- <authentication-manager> -->
 	<!-- <authentication-provider> -->
 	<!-- <user-service> -->
@@ -26,6 +24,7 @@
 	<!-- </authentication-provider> -->
 	<!-- </authentication-manager> -->
 
+	<!-- MODE AVEC DATABASE -->
 	<!-- Le bean MyUserDetailsService est défini dans le springContext.xml -->
 	<authentication-manager>
 		<authentication-provider user-service-ref="MyUserDetailsService" />

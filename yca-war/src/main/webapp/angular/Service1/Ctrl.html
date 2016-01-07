@@ -1,16 +1,24 @@
-<!-- On ne met pas le controller car il est directement injecté avec le router d'angular -->
-<!-- 	<div ng-controller="Ctrl"> -->
-
+<!-- On ne met pas le ng-controller car il est directement injecté avec le router d'angular -->
 <h4>Utilisation du router d'Angular ('#' dans l'URL)</h4>
 Nom
 <input type="text" ng-model="nom">
-<br><br>
+<br>
+<br>
 Pr&eacute;nom
 <input type="text" ng-model="prenom">
-<br><br>
+<br>
+<br>
 <button ng-click="createUser(nom,prenom)">Cr&eacute;er</button>
 <p>{{error}}</p>
 
 <div ng-repeat="u in users">{{u.lib1}} : Id = {{u.lib2}}</div>
 
-<!-- 	</div> -->
+<br>
+<form id="formTestController1" method="post" action="/yca-war/action/testController1">
+	<input type="submit" value="testController1">
+</form>
+
+<br>
+<form id="formTestController2" method="post" action="/yca-war/action/testController2">
+	<input type="submit" value="testController2">
+</form>

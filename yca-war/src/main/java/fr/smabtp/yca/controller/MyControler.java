@@ -37,8 +37,8 @@ public class MyControler {
 	public ModelAndView testController1(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("myJSP");
-		mav.addObject("message", "testController1");
+		mav.setViewName("springIHM");
+		mav.addObject("message", "Accès au Controller1");
 		return mav;
 	}
 
@@ -49,8 +49,8 @@ public class MyControler {
 	public ModelAndView testController2(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("myJSP");
-		mav.addObject("message", "testController2");
+		mav.setViewName("springIHM");
+		mav.addObject("message", "Accès au Controller2");
 		return mav;
 	}
 
@@ -71,25 +71,18 @@ public class MyControler {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "user", method = RequestMethod.GET)
-	public ResponseEntity<List<JsonFLux>> fetchAllUsers(
-			HttpServletRequest request) {
+	public ResponseEntity<List<JsonFLux>> fetchAllUsers(HttpServletRequest request) {
 
 		List<JsonFLux> currentUsersList = new ArrayList<JsonFLux>();
 		if (getEJB != null) {
 
-			Histo histoAdd = new Histo(
-					"Initialisation: Test GET sur controller Spring MVC",
-					"Angular JS", new Timestamp(new Date().getTime()));
+			Histo histoAdd = new Histo("Initialisation: Test GET sur controller Spring MVC", "Angular JS", new Timestamp(new Date().getTime()));
 			Histo histoAddBack = (Histo) getEJB.recordData(histoAdd);
-			currentUsersList.add(new JsonFLux(histoAddBack.getNomUp() + " "
-					+ histoAddBack.getPrenomUp(), histoAddBack.getPk()
-					.toString()));
+			currentUsersList.add(new JsonFLux(histoAddBack.getNomUp() + " " + histoAddBack.getPrenomUp(), histoAddBack.getPk().toString()));
 
-			return new ResponseEntity<List<JsonFLux>>(currentUsersList,
-					HttpStatus.OK);
+			return new ResponseEntity<List<JsonFLux>>(currentUsersList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<List<JsonFLux>>(
-					HttpStatus.SERVICE_UNAVAILABLE);
+			return new ResponseEntity<List<JsonFLux>>(HttpStatus.SERVICE_UNAVAILABLE);
 		}
 	}
 
@@ -99,13 +92,11 @@ public class MyControler {
 	// TODO
 	@ResponseBody
 	@RequestMapping(value = "getUsersLike", method = RequestMethod.POST)
-	public ResponseEntity<List<JsonFLux>> getUsersLike(
-			HttpServletRequest request) {
+	public ResponseEntity<List<JsonFLux>> getUsersLike(HttpServletRequest request) {
 
 		List<JsonFLux> currentUsersList = new ArrayList<JsonFLux>();
 
-		return new ResponseEntity<List<JsonFLux>>(currentUsersList,
-				HttpStatus.OK);
+		return new ResponseEntity<List<JsonFLux>>(currentUsersList, HttpStatus.OK);
 	}
 
 	/**
@@ -113,18 +104,14 @@ public class MyControler {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "createUser", method = RequestMethod.POST)
-	public ResponseEntity<List<JsonFLux>> createUser(
-			HttpServletRequest request, @RequestBody JsonFLux user) {
+	public ResponseEntity<List<JsonFLux>> createUser(HttpServletRequest request, @RequestBody JsonFLux user) {
 
-		Histo userToCreate = new Histo(user.getLib1(), user.getLib2(),
-				new Timestamp(new Date().getTime()));
+		Histo userToCreate = new Histo(user.getLib1(), user.getLib2(), new Timestamp(new Date().getTime()));
 		Histo userToCreateBack = (Histo) getEJB.recordData(userToCreate);
 
 		List<JsonFLux> currentUsersList = new ArrayList<JsonFLux>();
-		currentUsersList.add(new JsonFLux("User créé: " + user.getLib1() + " "
-				+ user.getLib2(), userToCreateBack.getPk().toString()));
+		currentUsersList.add(new JsonFLux("User créé: " + user.getLib1() + " " + user.getLib2(), userToCreateBack.getPk().toString()));
 
-		return new ResponseEntity<List<JsonFLux>>(currentUsersList,
-				HttpStatus.OK);
+		return new ResponseEntity<List<JsonFLux>>(currentUsersList, HttpStatus.OK);
 	}
 }
