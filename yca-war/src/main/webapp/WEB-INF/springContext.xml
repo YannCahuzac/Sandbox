@@ -13,5 +13,6 @@
 	<!-- Ajout bean gérés par Spring -->
 
 	<bean id="getEJB" class="fr.smabtp.jndi.GetEJB" />
+	<bean id="MyUserDetailsService" class="fr.smabtp.yca.security.MyUserDetailsService" />
 
 </beans>

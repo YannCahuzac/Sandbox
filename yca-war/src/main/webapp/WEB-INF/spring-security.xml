@@ -16,14 +16,19 @@
 		<intercept-url pattern="/action/403" access="permitAll" />
 	</http>
 
+	<!-- <authentication-manager> -->
+	<!-- <authentication-provider> -->
+	<!-- <user-service> -->
+	<!-- <user name="yann" password="y" authorities="ROLE_ADMIN" /> -->
+	<!-- <user name="1" password="1" authorities="ROLE_ACTION1" /> -->
+	<!-- <user name="2" password="2" authorities="ROLE_ACTION2" /> -->
+	<!-- </user-service> -->
+	<!-- </authentication-provider> -->
+	<!-- </authentication-manager> -->
+
+	<!-- Le bean MyUserDetailsService est défini dans le springContext.xml -->
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="yann" password="y" authorities="ROLE_ADMIN" />
-				<user name="1" password="1" authorities="ROLE_ACTION1" />
-				<user name="2" password="2" authorities="ROLE_ACTION2" />
-			</user-service>
-		</authentication-provider>
+		<authentication-provider user-service-ref="MyUserDetailsService" />
 	</authentication-manager>
 
 </beans:beans>

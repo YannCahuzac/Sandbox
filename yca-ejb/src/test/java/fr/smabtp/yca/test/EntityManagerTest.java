@@ -2,10 +2,12 @@ package fr.smabtp.yca.test;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -14,10 +16,20 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.smabtp.yca.bean.Histo;
+import fr.smabtp.yca.bean.TableU;
 
 public class EntityManagerTest {
 
 	final static Logger logger = Logger.getLogger(EntityManagerTest.class.getName());
+
+	private static EntityManagerFactory emf;
+	private static EntityManager em;
+
+	static {
+		// Création de l'entity manager + factory, sans passer par du @persistenceContext:
+		emf = Persistence.createEntityManagerFactory("PU");
+		em = emf.createEntityManager();
+	}
 
 	@Before
 	public void initialize() {
@@ -32,7 +44,34 @@ public class EntityManagerTest {
 
 	@Test
 	@Ignore
-	public void test1() {
+	public void testCreateQuery() {
+		String username = "INSEE";
+		TableU user = em.createQuery("select t from TABLEU t where t.TuLib = :username", TableU.class).setParameter("username", username).getSingleResult();
+		System.out.println(user.toString());
+	}
+
+	@Test
+	@Ignore
+	public void testCreateNamedQuery() {
+		String username = "INSEE";
+
+		TypedQuery<TableU> query = em.createNamedQuery("findByLib", TableU.class);
+		List<TableU> results = query.setParameter("username", username).getResultList();
+		if (results != null && results.size() > 0) {
+			for (TableU user : results) {
+				if (user != null) {
+					System.out.println(user.toString());
+				}
+			}
+		}
+
+		TableU user = em.createQuery("select t from TABLEU t where t.TuLib = :username", TableU.class).setParameter("username", username).getSingleResult();
+		System.out.println(user.toString());
+	}
+
+	@Test
+	@Ignore
+	public void test2() {
 		try {
 
 			// Création de l'entity manager + factory, sans passer par du @persistenceContext:

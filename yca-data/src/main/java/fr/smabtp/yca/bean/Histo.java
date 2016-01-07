@@ -9,8 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "KV01.SMABTP_HISTOPPE")
-@Table(name = "KV01.SMABTP_HISTOPPE")
+/**
+ * Si le default schema n'est pas défini dans le persistence, le rajouter dans
+ * entity et table ci-dessous.
+ */
+@Entity(name = "SMABTP_HISTOPPE")
+@Table(name = "SMABTP_HISTOPPE")
 public class Histo implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -79,7 +83,8 @@ public class Histo implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "\n\nPk: " + getPk() + "\nNomUp: " + getNomUp() + "\nPrenomUp: " + getPrenomUp() + "\nClDateHisto: " + getClDateHisto() + "\n";
+		return "\n\nPk: " + getPk() + "\nNomUp: " + getNomUp() + "\nPrenomUp: "
+				+ getPrenomUp() + "\nClDateHisto: " + getClDateHisto() + "\n";
 	}
 
 }

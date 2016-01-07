@@ -9,8 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import fr.smabtp.ejb.BusinessRemote;
+import fr.smabtp.yca.bean.TableU;
 
 @Stateless
 @Remote
@@ -33,5 +35,12 @@ public class BusinessImpl implements BusinessRemote {
 		entityManager.refresh(object);
 		logger.info("Fin persist");
 		return object;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) {
+		logger.info("Entrée loadUserByUsername Spring Security.");
+		// Assuming that you have a TableU class that implements UserDetails.
+		return entityManager.createQuery("select t from TABLEU t where t.TuLib = :username", TableU.class).setParameter("username", username).getSingleResult();
 	}
 }
