@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Si le default schema n'est pas défini dans le persistence, le rajouter dans
- * entity et table ci-dessous.
+ * @Entity est le nom que va utiliser notre em pour que ce soit cette classe qu'il transactionne (on peut choisir le nom qu'on veut et pas forcément le mm que celui de la table). 
+ * Si le default schema n'est pas défini dans le persistence, le rajouter dans @table ci-dessous.
  */
 @Entity(name = "SMABTP_HISTOPPE")
 @Table(name = "SMABTP_HISTOPPE")
@@ -83,8 +83,7 @@ public class Histo implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "\n\nPk: " + getPk() + "\nNomUp: " + getNomUp() + "\nPrenomUp: "
-				+ getPrenomUp() + "\nClDateHisto: " + getClDateHisto() + "\n";
+		return "\n\nPk: " + getPk() + "\nNomUp: " + getNomUp() + "\nPrenomUp: " + getPrenomUp() + "\nClDateHisto: " + getClDateHisto() + "\n";
 	}
 
 }

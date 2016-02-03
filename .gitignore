@@ -9,4 +9,4 @@ target
 node_modules
 components
 bower_components
-persistence.xml
+yca-ejb/src/main/resources/META-INF/persistence.xml

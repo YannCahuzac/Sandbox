@@ -13,10 +13,6 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-/**
- * Si le default schema n'est pas défini dans le persistence, le rajouter dans
- * entity et table ci-dessous.
- */
 @Entity(name = "TABLEU")
 @Table(name = "TABLEU")
 @NamedQueries({ @NamedQuery(name = "findByLib", query = "SELECT t FROM TABLEU t WHERE t.TuLib = :username") })
@@ -143,7 +139,6 @@ public class TableU implements UserDetails {
 				rolesToString += role.getAuthority() + "\n";
 			}
 		}
-		return "\nUser: " + getUsername() + "\nPassword: " + getPassword()
-				+ "\nRoles: " + rolesToString;
+		return "\nUser: " + getUsername() + "\nPassword: " + getPassword() + "\nRoles: " + rolesToString;
 	}
 }
